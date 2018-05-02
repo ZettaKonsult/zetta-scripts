@@ -1,0 +1,55 @@
+{
+  "name": "zetta-scripts",
+  "version": "1.0.0",
+  "author": "Fredrik Palmquist <fiddep@telia.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZettaKonsult/zk-open-modules.git"
+  },
+  "bin": {
+    "zetta-scripts": "src/index.js"
+  },
+  "scripts": {
+    "start": "src/index",
+    "test": "node src test",
+    "test:watch": "yarn run test --watch",
+    "build": "babel src -d dist",
+    "lint": "eslint src/**/*.js",
+    "travis:test": "jest",
+    "prepublish": "yarn run build",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "cross-spawn": "^6.0.5",
+    "jest": "^22.4.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.12.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "flow-bin": "^0.59.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "prettier": "^1.8.2"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "prettier --trailing-comma es5 --single-quote --no-semi --write",
+      "yarn run lint",
+      "git add"
+    ],
+    "*.json": ["prettier --write", "git add"],
+    "yarn.lock": ["git rm --cached"]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  }
+}
