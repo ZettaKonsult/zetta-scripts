@@ -3,6 +3,8 @@ process.env.BABEL_ENV = "test";
 process.env.NODE_ENV = "test";
 process.env.PUBLIC_URL = "";
 
+const { hasPkgProp, parseEnv, hasFile } = require("../utils");
+
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
@@ -21,10 +23,12 @@ if (
   argv.push("--watch");
 }
 
-//change default env to node if no env is specified
-if (argv.indexOf("--env") === -1) {
-  argv.push("--env", "node");
-}
+const config =
+  !argv.includes("--config") &&
+  !hasFile("jest.config.js") &&
+  !hasPkgProp("jest")
+    ? ["--config", JSON.stringify(require("../config/jest.config"))]
+    : [];
 
 const jest = require("jest");
-jest.run(argv);
+jest.run([...config, ...argv]);
