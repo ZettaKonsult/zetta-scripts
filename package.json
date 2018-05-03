@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZettaKonsult/zk-open-modules.git"
+    "url": "https://github.com/ZettaKonsult/zetta-scripts"
   },
   "bin": {
     "zetta-scripts": "src/index.js"
@@ -25,6 +25,7 @@
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
+    "babel-preset-minify": "^0.4.1",
     "cross-spawn": "^6.0.5",
     "jest": "^22.4.3",
     "lodash.has": "^4.5.2",

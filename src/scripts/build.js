@@ -1,3 +1,6 @@
+process.env.BABEL_ENV = "production";
+process.env.NODE_ENV = "production";
+
 const path = require("path");
 const spawn = require("cross-spawn");
 const rimraf = require("rimraf");
